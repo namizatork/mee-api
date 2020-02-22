@@ -32,7 +32,8 @@ class UsersTableSeeder extends Seeder
             'speakerdeck_url'              => "https://test.com",
             'portfolio_url'                => "https://test.com",
             'misc_url'                     => "https://test.com",
-            'first_flg'                    => true
+            'first_flg'                    => true,
+            'registered_flg'               => false
         ]);
     }
 }
