@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('industry')->nullable()->comment('業種（1: フロントエンドエンジニア 2: バックエンドエンジニア 3 : インフラエンジニア 4: AIエンジニア 5: 組み込みエンジニア 6: その他）');
             $table->unsignedInteger('gender')->nullable()->comment('年齢');
             $table->unsignedInteger('experience_years')->nullable()->nullable()->comment('経験年数');
-            $table->string('email')->nullable()->comment('メールアドレス');
+            $table->string('email')->unique()->comment('メールアドレス');
             $table->string('password')->nullable()->comment('パスワード');
             $table->string('profile_image')->nullable()->comment('アイコン画像');
             $table->string('company')->nullable()->comment('企業名');
