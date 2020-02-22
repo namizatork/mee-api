@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\OAuth;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Auth;
 use Socialite;
 
@@ -15,12 +14,17 @@ class TwitterLoginController extends Controller
     use AuthenticatesUsers;
     protected $redirectTo = '/home';
 
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     /**
      * ユーザーをTwitterの認証ページにリダイレクトする
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirect()
     {
         return Socialite::driver('twitter')->redirect();
     }
@@ -30,44 +34,29 @@ class TwitterLoginController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function callback(User $user)
     {
         try {
-            $user = Socialite::driver('twitter')->user();
+            $twitter_user = Socialite::driver('twitter')->userFromTokenAndSecret(config('services.twitter.access_token'),config('services.twitter.access_token_key'));
         } catch (Exception $e) {
             return redirect('auth/twitter');
         }
-
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $user->firstOrCreateUser($twitter_user);
 
         Auth::login($authUser, true);
 
-        return redirect()->route('home');
-    }
-
-    private function findOrCreateUser($twitterUser)
-    {
-        $authUser = User::where('twitter_id', $twitterUser->id)->first();
-
-        if ($authUser){
-            return $authUser;
+        if($authUser->registered_flg == false)
+        {
+            return redirect()->route('mypages.create');
+        }else{
+            return redirect()->route('mypages.show');
         }
-
-        return User::create([
-            'name' => $twitterUser->name,
-            'handle' => $twitterUser->nickname,
-            'twitter_id' => $twitterUser->id
-        ]);
     }
 
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
-    }
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
     }
 
 }

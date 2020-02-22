@@ -48,6 +48,8 @@ return [
         'client_id'     => env('TWITTER_API_KEY'),
         'client_secret' => env('TWITTER_API_SECRET'),
         'redirect'      => env('TWITTER_CALLBACKURL'),
+        'access_token'      => env('TWITTER_ACCESS_TOKEN'),
+        'access_token_key'      => env('TWITTER_ACCESS_TOKEN_SECRET'),
     ],
 
 ];

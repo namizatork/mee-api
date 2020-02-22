@@ -29,7 +29,7 @@ Route::namespace('Jwt')->group(function () {
 
 Route::namespace('Oauth')->prefix('oauth')->group(function () {
     Route::prefix('twitter')->group(function () {
-        Route::get('redirect', 'TwitterController@redirect');
-        Route::get('callback', 'TwitterController@callback');
+        Route::get('/', 'TwitterLoginController@redirect');
+        Route::get('callback', 'TwitterLoginController@callback');
     });
 });

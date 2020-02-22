@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_name', 'email', 'password',
     ];
 
     /**
@@ -25,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
@@ -48,22 +48,15 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    // /**
-    //  * The attributes that are mass assignable.
-    //  *
-    //  * @var array
-    //  */
-    // protected $fillable = [
-    //     'name', 'email', 'password','handle','twitter_id','avatar' 
-    // ];
-
-    // /**
-    //  * The attributes that should be hidden for arrays.
-    //  *
-    //  * @var array
-    //  */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
+    public function firstOrCreateUser(object $twitter_user) : User
+    { 
+        return $this->firstOrCreate([
+        'email' => $twitter_user->email
+            ],
+            [
+            'user_name'            => $twitter_user->name,
+            'email'                => $twitter_user->email,
+        ]);
+    }
 }
 
