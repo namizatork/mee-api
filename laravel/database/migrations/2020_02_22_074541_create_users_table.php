@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('gender')->comment('年齢');
             $table->unsignedInteger('experience_years')->nullable()->comment('経験年数');
             $table->string('email')->nullable()->comment('メールアドレス');
+            $table->string('password')->nullable()->comment('パスワード');
             $table->string('profile_image')->nullable()->comment('アイコン画像');
             $table->string('company')->nullable()->comment('企業名');
             $table->string('twitter_url')->nullable()->comment('TwitterURL');
@@ -41,7 +42,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('best_programming_language_id')->references('id')->on('programming_languages');
             $table->foreign('best_framework_id')->references('id')->on('frameworks');
-            $table->foreign('status_id')->references('id')->on('status');
+            $table->foreign('status_id')->references('id')->on('statuses');
 
         });
     }

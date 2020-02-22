@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserFrameworksTable extends Migration
+class CreateUserStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateUserFrameworksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_frameworks', function (Blueprint $table) {
+        Schema::create('user_status', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('framework_id');
+            $table->unsignedInteger('status_id');
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('framework_id')->references('id')->on('frameworks');
+            $table->foreign('status_id')->references('id')->on('statuses');
 
-            $table->unique(['user_id', 'framework_id']);
+            $table->unique(['user_id', 'status_id']);
         });
     }
 
@@ -33,6 +33,6 @@ class CreateUserFrameworksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_frameworks');
+        Schema::dropIfExists('user_status');
     }
 }

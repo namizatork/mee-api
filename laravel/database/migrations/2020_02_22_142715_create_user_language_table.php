@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocialAccountsTable extends Migration
+class CreateUserLanguageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateSocialAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_accounts', function (Blueprint $table) {
+        Schema::create('user_language', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
-            $table->string('provider')->comment('プロバイダー名');
-            $table->string('account_name')->comment('アカウント名');
-            $table->string('access_token')->comment('アクセストークン');
-            $table->string('access_token_key')->comment('アクセストークンキー');
+            $table->unsignedInteger('language_id');
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('language_id')->references('id')->on('programming_languages');
 
-            $table->unique('user_id');
+            $table->unique(['user_id', 'language_id']);
         });
     }
 
@@ -35,6 +33,6 @@ class CreateSocialAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_accounts');
+        Schema::dropIfExists('user_language');
     }
 }
