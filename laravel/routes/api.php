@@ -14,8 +14,6 @@ use Illuminate\Http\Request;
 */
 
 Route::namespace('Jwt')->group(function () {
-
-
     Route::middleware('guest:api')->group(function () {
         Route::post('login', 'LoginController@index')->name('login');
     });
@@ -24,7 +22,6 @@ Route::namespace('Jwt')->group(function () {
         Route::get('me', 'MeController@index')->name('me');
         Route::post('register', 'RegisterController@index')->name('register');
     });
-
 });
 
 Route::namespace('Oauth')->prefix('oauth')->group(function () {
@@ -32,4 +29,8 @@ Route::namespace('Oauth')->prefix('oauth')->group(function () {
         Route::get('/', 'TwitterLoginController@redirect');
         Route::get('callback', 'TwitterLoginController@callback');
     });
+});
+
+Route::prefix('userlists')->group(function () {
+    Route::resource('/{id}', 'UserListController', ['only' => ['index', 'show']]);
 });
