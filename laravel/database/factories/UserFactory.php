@@ -15,12 +15,27 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'best_programming_language_id' => 1,
+        'best_framework_id' => 1,
+        'user_name' => $faker->name,
+        'age' => 1,
+        'prefecture' => 1,
+        'industry' => 1,
+        'gender' => 1,
+        'experience_years' => 1,
+        'email' => $faker->email,
+        'profile_image' => $faker->imageUrl,
+        'company' => $faker->company,
+        'twitter_url' => $faker->url,
+        'facebook_url' => $faker->url,
+        'github_url' => $faker->url,
+        'qiita_url' => $faker->url,
+        'connpass_url' => $faker->url,
+        'speakerdeck_url' => $faker->url,
+        'portfolio_url' => $faker->url,
+        'misc_url' => $faker->url,
+        'first_flg' => true
     ];
 });
