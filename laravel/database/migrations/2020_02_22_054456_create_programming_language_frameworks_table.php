@@ -16,7 +16,7 @@ class CreateProgrammingLanguageFrameworksTable extends Migration
         Schema::create('programming_language_frameworks', function (Blueprint $table) {
             $table->unsignedInteger('language_id');
             $table->unsignedInteger('framework_id');
-            $table->softDeletes(); //論理削除
+            $table->softDeletes();
             $table->timestamps();
 
             // 外部キー設定（必要だったら）

@@ -15,10 +15,10 @@ class CreateFrameworksTable extends Migration
     {
         Schema::create('frameworks', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('framework_name')->comment('フレームワーク名');
+            $table->string('framework_name')->comment('フレームワーク名');
             $table->string('icon_image')->nullable()->comment('アイコン画像');
             $table->unsignedInteger('display_order')->nullable()->comment('表示順');
-            $table->softDeletes(); //論理削除
+            $table->softDeletes();
             $table->timestamps();
         });
     }

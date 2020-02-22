@@ -15,9 +15,9 @@ class CreateStatusesTable extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('status_name')->comment('ステータス名');
+            $table->string('status_name')->comment('ステータス名');
             $table->unsignedInteger('display_order')->nullable()->comment('表示順');
-            $table->softDeletes(); //論理削除
+            $table->softDeletes();
             $table->timestamps();
         });
     }
