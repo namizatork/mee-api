@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('best_programming_language_id')->comment('一番好きな言語ID');
             $table->unsignedInteger('best_framework_id')->nullable()->comment('一番好きなフレークワークID');
+            $table->unsignedInteger('status_id')->nullable()->comment('ステータスID');
             $table->string('user_name')->comment('ユーザー名');
             $table->unsignedInteger('age')->comment('年齢（1: 10代 2: 20代 3: 30代 4: 40代 5: 50代 6: 60代以上）');
             $table->unsignedInteger('prefecture')->comment('都道府県（1: 北海道 ....）');
@@ -40,6 +41,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('best_programming_language_id')->references('id')->on('programming_languages');
             $table->foreign('best_framework_id')->references('id')->on('frameworks');
+            $table->foreign('status_id')->references('id')->on('status');
 
         });
     }
