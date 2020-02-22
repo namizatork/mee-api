@@ -38,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->string('misc_url')->nullable()->comment('その他URL');
             $table->boolean('first_flg')->default(true)->comment('紹介登録時の案内フラグ（false: 2回目）');
             $table->boolean('registered_flg')->default(false)->comment('登録されてるかどうか:（true:登録されてる）');
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
 
