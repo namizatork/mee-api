@@ -15,14 +15,14 @@ class CreateUserFrameworkTable extends Migration
     {
         Schema::create('user_framework', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('status_id');
+            $table->unsignedInteger('framework_id');
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('framework_id')->references('id')->on('frameworks');
 
-            $table->unique(['user_id', 'status_id']);
+            $table->unique(['user_id', 'framework_id']);
         });
     }
 
