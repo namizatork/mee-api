@@ -32,5 +32,6 @@ Route::namespace('Oauth')->prefix('oauth')->group(function () {
 });
 
 Route::prefix('userlists')->group(function () {
-    Route::resource('/{id}', 'UserListController', ['only' => ['index', 'show']]);
+    Route::get('/', 'UserListController@index');
+    Route::get('/{id}', 'UserListController@show');
 });
