@@ -17,8 +17,6 @@ class CreateStatusesTable extends Migration
             $table->increments('id');
             $table->string('status_name')->comment('ステータス名');
             $table->unsignedInteger('display_order')->nullable()->comment('表示順');
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 
