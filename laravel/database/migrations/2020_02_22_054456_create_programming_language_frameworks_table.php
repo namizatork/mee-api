@@ -16,14 +16,19 @@ class CreateProgrammingLanguageFrameworksTable extends Migration
         Schema::create('programming_language_frameworks', function (Blueprint $table) {
             $table->unsignedInteger('language_id');
             $table->unsignedInteger('framework_id');
-            $table->softDeletes();
-            $table->timestamps();
 
-            // 外部キー設定（必要だったら）
-            $table->foreign('language_id')->references('id')->on('programming_languages');
-            $table->foreign('framework_id')->references('id')->on('frameworks');
+            $table->foreign('language_id')
+                ->references('id')
+                ->on('programming_languages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            // プライマリキー設定
+            $table->foreign('framework_id')
+                ->references('id')
+                ->on('frameworks')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->unique(['language_id', 'framework_id']);
         });
     }

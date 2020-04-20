@@ -18,8 +18,6 @@ class CreateFrameworksTable extends Migration
             $table->string('framework_name')->comment('フレームワーク名');
             $table->string('icon_image')->nullable()->comment('アイコン画像');
             $table->unsignedInteger('display_order')->nullable()->comment('表示順');
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 

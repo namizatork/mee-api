@@ -13,6 +13,6 @@ API一覧画面
 | 5   | [mypages/{account}/edit](mypages/edit.md)      | GET         | マイページ編集     | マイページ情報変更画面  |
 | 6   | [mypages/{account}update](mypages/update.md)   | PUT         | マイページ編集処理  | マイページ情報変更処理  |
 | 7   | [mypages/{account}destory](mypages/destory.md) | DELETE      | ユーザー退会処理    | ユーザー退会処理       |
-| 8   | [user_lists/index](user_lists/index.md)                | GET         | ユーザー一覧ページ  | ユーザー一覧           |
-| 9   | [user_lists/{account}show](user_lists/show.md)   | GET         | ユーザー詳細ページ  | ユーザー詳細           |
+| 8   | [user_lists/index](user_lists/index.md)        | GET         | ユーザー一覧ページ  | ユーザー一覧           |
+| 9   | [user_lists/{account}show](user_lists/show.md) | GET         | ユーザー詳細ページ  | ユーザー詳細           |
 

@@ -16,11 +16,18 @@ class CreateUserLanguageTable extends Migration
         Schema::create('user_language', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('language_id');
-            $table->softDeletes();
-            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('language_id')->references('id')->on('programming_languages');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('language_id')
+                ->references('id')
+                ->on('programming_languages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->unique(['user_id', 'language_id']);
         });
